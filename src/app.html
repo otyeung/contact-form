@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-5RD6X0SWMZ"></script> -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-8N3VVN5455"></script>
+		<script>
+			window.dataLayer = window.dataLayer || []
+			function gtag() {
+				dataLayer.push(arguments)
+			}
+			gtag('js', new Date())
+
+			/*			gtag('config', 'G-5RD6X0SWMZ')*/
+
+			gtag('config', 'G-5RD6X0SWMZ', {
+				allow_enhanced_conversions: true
+			})
+
+			gtag('consent', 'default', {
+				ad_storage: 'granted',
+				ad_user_data: 'granted',
+				ad_personalization: 'granted',
+				analytics_storage: 'granted'
+			})
+		</script>
+		<!-- Google Tag Manager -->
+		<script>
+			;(function (w, d, s, l, i) {
+				w[l] = w[l] || []
+				w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != 'dataLayer' ? '&l=' + l : ''
+				j.async = true
+				j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+				f.parentNode.insertBefore(j, f)
+			})(window, document, 'script', 'dataLayer', 'GTM-MQXLZ7VT')
+		</script>
+		<!-- End Google Tag Manager -->
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<link rel="icon" href="%svelte.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%svelte.head%
+	</head>
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-MQXLZ7VT"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<div>%svelte.body%</div>
+	</body>
+</html>
