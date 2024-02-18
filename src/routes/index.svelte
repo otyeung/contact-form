@@ -23,25 +23,28 @@
 		}
 		return undefined
 	}
-
-	// grab li_fat_id (LinkedIn First-Party Ad Tracking ID) from cookie or query string URL
-	const li_fat_id =
-		(typeof window !== 'undefined' &&
-			new URLSearchParams(window.location.search).get('li_fat_id')) ||
-		(typeof document !== 'undefined' && getCookie('li_fat_id')) ||
-		''
 	// End Cookie routine
 
 	const submitForm = async (event) => {
 		submitStatus = 'submitting'
 		const formData = new FormData(event.currentTarget)
 
+		// Dynamically get the li_fat_id value from the browser
+		const li_fat_id =
+			(typeof window !== 'undefined' &&
+				new URLSearchParams(window.location.search).get('li_fat_id')) ||
+			(typeof document !== 'undefined' && getCookie('li_fat_id')) ||
+			''
+
+		// Add the dynamically obtained li_fat_id to the form data
+		formData.append('li_fat_id', li_fat_id)
+
 		const hashedEmail = await hashData(formData.get('email'))
 		const hashedPhoneNumber = await hashData(formData.get('phoneNumber'))
 		const hashedFirstName = await hashData(formData.get('firstName'))
 		const hashedLastName = await hashData(formData.get('lastName'))
 
-		// Method 1 : pass parameters via user_data, note that you must pass all hashed values and li_fat_id
+		// Method 1 : pass parameters via user_data, note that you must pass all hashed values including li_fat_id captured from browser
 		gtag('set', 'user_data', {
 			email: formData.get('email'),
 			sha256_email_address: hashedEmail,
@@ -67,14 +70,15 @@
 			moatID: formData.get('moatID')
 		})
 
-		// Method 2 : pass parameters via data layer, note that you must pass all hashed email only
-		// li_fat_id can be produced at GTM web container
+		// Method 2 :
+		// 1. pass all parameters via data layer
+		// 2. you can pass li_fat_id from browser here or you can execute code at GTM web container to capture li_fat_id
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
 			event: 'LinkedIn CAPI',
 			email: formData.get('email'),
 			sha256_email_address: hashedEmail,
-			//			linkedinFirstPartyId: li_fat_id,
+			linkedinFirstPartyId: li_fat_id,
 			firstName: formData.get('firstName'),
 			lastName: formData.get('lastName'),
 			title: formData.get('title'),
@@ -169,6 +173,7 @@
 		>
 	{:else if submitStatus === undefined}
 		<form id="contactForm" on:submit|preventDefault="{submitForm}">
+			<input type="hidden" id="li_fat_id" name="li_fat_id" value="" />
 			<div class="input-container" id="firstNameContainer">
 				<label for="first name">First Name</label>
 				<input type="text" name="firstName" id="firstName" value="John" />

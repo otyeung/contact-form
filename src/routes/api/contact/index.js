@@ -21,7 +21,7 @@ export const post = async ({ request }) => {
 				formDataObject['company']
 			}&entry.836188929=${encodeURIComponent(formDataObject['phoneNumber'])}` +
 			`&entry.1253871153=${formDataObject['street']}&entry.1830284187=${formDataObject['city']}&entry.1040059978=${formDataObject['region']}` +
-			`&entry.1895320406=${formDataObject['postalCode']}&entry.1430380922=${formDataObject['countryCode']}&submit=Submit`
+			`&entry.1895320406=${formDataObject['postalCode']}&entry.1430380922=${formDataObject['countryCode']}&entry.1675564272=${formDataObject['currency']}&entry.1276096038=${formDataObject['value']}&entry.703955549=${formDataObject['acxiomID']}&entry.48487709=${formDataObject['moatID']}&entry.844537053=${formDataObject['li_fat_id']}&submit=Submit`
 
 		// Log the constructed URL for debugging
 		console.log('Constructed URL:', googleFormUrl)
