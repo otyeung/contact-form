@@ -46,6 +46,7 @@
 
 		// Method 1 : pass parameters via user_data, note that you must pass all hashed values including li_fat_id captured from browser
 		gtag('set', 'user_data', {
+			// Standard fields
 			email: formData.get('email'),
 			sha256_email_address: hashedEmail,
 			phone: formData.get('phoneNumber'),
@@ -61,6 +62,7 @@
 				postal_code: formData.get('postalCode'),
 				country: formData.get('countryCode')
 			},
+			// Non-standard fields
 			jobTitle: formData.get('title'),
 			companyName: formData.get('company'),
 			linkedinFirstPartyId: li_fat_id,
