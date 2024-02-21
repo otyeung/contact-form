@@ -71,26 +71,30 @@
 			acxiomID: formData.get('acxiomID'),
 			moatID: formData.get('moatID')
 		})
+		window.dataLayer = window.dataLayer || []
+		dataLayer.push({
+			event: 'LinkedIn CAPI'
+		})
 
 		// Method 2 :
 		// 1. pass all parameters via data layer
 		// 2. you can pass li_fat_id from browser here or you can execute code at GTM web container to capture li_fat_id
-		window.dataLayer = window.dataLayer || []
-		dataLayer.push({
-			event: 'LinkedIn CAPI',
-			email: formData.get('email'),
-			sha256_email_address: hashedEmail,
-			linkedinFirstPartyId: li_fat_id,
-			firstName: formData.get('firstName'),
-			lastName: formData.get('lastName'),
-			title: formData.get('title'),
-			companyName: formData.get('company'),
-			countryCode: formData.get('countryCode'),
-			currency: formData.get('currency'),
-			value: formData.get('value'),
-			acxiomID: formData.get('acxiomID'),
-			moatID: formData.get('moatID')
-		})
+		// window.dataLayer = window.dataLayer || []
+		// dataLayer.push({
+		// 	event: 'LinkedIn CAPI',
+		// 	email: formData.get('email'),
+		// 	sha256_email_address: hashedEmail,
+		// 	linkedinFirstPartyId: li_fat_id,
+		// 	firstName: formData.get('firstName'),
+		// 	lastName: formData.get('lastName'),
+		// 	title: formData.get('title'),
+		// 	companyName: formData.get('company'),
+		// 	countryCode: formData.get('countryCode'),
+		// 	currency: formData.get('currency'),
+		// 	value: formData.get('value'),
+		// 	acxiomID: formData.get('acxiomID'),
+		// 	moatID: formData.get('moatID')
+		// })
 
 		// Post the form data to Google Sheet via Google Form API
 		const res = await fetch('/api/contact', {
@@ -100,6 +104,9 @@
 
 		const { message } = await res.json()
 		submitStatus = message
+
+		// firing event pixel to LinkedIn
+		window.lintrk('track', { conversion_id: 15708492 })
 	}
 
 	const resetForm = () => {
