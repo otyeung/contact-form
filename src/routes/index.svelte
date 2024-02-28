@@ -66,14 +66,16 @@
 			jobTitle: formData.get('title'),
 			companyName: formData.get('company'),
 			linkedinFirstPartyId: li_fat_id,
-			currency: formData.get('currency'),
-			value: formData.get('value'),
+			//			currency: formData.get('currency'),
+			//			value: formData.get('value'),
 			acxiomID: formData.get('acxiomID'),
 			moatID: formData.get('moatID')
 		})
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
-			event: 'LinkedIn CAPI'
+			event: 'capi_form_submit',
+			currency: formData.get('currency'),
+			value: formData.get('value')
 		})
 
 		// Method 2 :
