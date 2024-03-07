@@ -48,7 +48,8 @@
 		gtag('set', 'user_data', {
 			// Standard fields
 			email: formData.get('email'),
-			sha256_email_address: hashedEmail,
+			// No need to send hashed email address if you are sending email address, server tag will do the hashing
+			//			sha256_email_address: hashedEmail,
 			phone: formData.get('phoneNumber'),
 			sha256_phone_number: hashedPhoneNumber,
 			address: {
@@ -65,11 +66,12 @@
 			// Non-standard fields
 			jobTitle: formData.get('title'),
 			companyName: formData.get('company'),
-			// linkedinFirstPartyId: li_fat_id,
+			linkedinFirstPartyId: li_fat_id,
 			//			currency: formData.get('currency'),
 			//			value: formData.get('value'),
 			acxiomID: formData.get('acxiomID'),
-			moatID: formData.get('moatID')
+			moatID: formData.get('moatID'),
+			leadID: formData.get('leadID')
 		})
 		window.dataLayer = window.dataLayer || []
 		dataLayer.push({
@@ -257,6 +259,11 @@
 				<input type="text" name="moatID" id="moatID" value="12345678" />
 			</div>
 
+			<div class="input-container" id="leadIDContainer">
+				<label for="leadID"> Lead ID </label>
+				<input type="text" name="leadID" id="leadID" value="12345678" />
+			</div>
+
 			<div class="submit-container">
 				<input type="submit" class="small-submit-button" />
 			</div>
@@ -276,7 +283,6 @@
 					<p class="paragraph-2">
 						We're using tracking to measure how you use this site.
 						<a href="/privacy-policy" class="link-5">Learn more</a>.
-						<a href="/privacy-policy"></a><br />
 					</p>
 				</div>
 				<div class="section-3">
