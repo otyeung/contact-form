@@ -79,7 +79,8 @@
 			currency: formData.get('currency'),
 			value: formData.get('value')
 		})
-
+		// fire Insight Tag event pixel for "form submit"
+		window.lintrk('track', { conversion_id: 15876108 })
 		// Method 2 :
 		// 1. pass all parameters via data layer
 		// 2. you can pass li_fat_id from browser here or you can execute code at GTM web container to capture li_fat_id
